@@ -1,0 +1,188 @@
+<script>import bootstrap from 'bootstrap'</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Application de Classification</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <!-- Favicons -->
+  <link 
+  href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  
+
+   <!--rel="stylesheet">
+Template Main CSS File -->
+<!-- Template Main CSS File -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: BizLand
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<style>
+  #hero  {
+    background: url("{{ url_for('static', filename='img/hero-bg.jpg') }}") top left;
+      
+        }
+    </style>
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header"  class="d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">Classification <span>.</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="">
+</a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Accueil</a></li>
+          <li><a class="nav-link scrollto" href="#classification">Prediction</a></li>
+       
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero"  class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100">
+      <h1>Bienvenue dans le projet du <span>Groupe 2</span></h1>
+      <h2>Ce site permet de faire la classification de textes en langue chichewa </h2>
+   
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+  
+
+    <!-- ======= Contact Section ======= -->
+    <section id="classification" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h3><span>Classification de texte </span></h3>
+         
+        </div>
+
+  
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="col-lg-12">
+    <form role="form" class="php-email-form">
+        <div class="form-group">
+            <textarea class="form-control" name="message" id="text" rows="5" placeholder="" required></textarea>
+        </div>
+        <div class="text-center">
+            <button onclick="makeApiCall()">Classifier</button>
+           
+        </div>
+        <h1>
+          <div id="result-container">
+                <!-- Les résultats seront affichés ici -->
+            </div>
+          </h1>
+        
+    </form>
+</div>
+
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Groupe 2 NLP</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">Groupe 2</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+<script src="{{ url_for('static', filename='purecounter/purecounter_vanilla.js') }}"></script>
+<script src="{{ url_for('static', filename='aos/aos.js') }}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='glightbox/js/glightbox.min.js') }}"></script>
+<script src="{{ url_for('static', filename='isotope-layout/isotope.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static', filename='swiper/swiper-bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='waypoints/noframework.waypoints.js') }}"></script>
+<script src="{{ url_for('static', filename='php-email-form/validate.js') }}"></script>
+
+<!-- Template Main JS File -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  
+  <script>
+    function makeApiCall() {
+    var textElement = document.getElementById('text');
+    var textValue = textElement.value;
+
+    fetch('/make_api_call', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain',
+        },
+        body: textValue,
+    })
+    .then(response => response.text())//response.json()
+    .then(data => {
+        var resultContainer = document.getElementById('result-container');
+        resultContainer.innerHTML = '<pre>' + data + '</pre>';
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'appel API :', error);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var form = document.querySelector('.php-email-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche la soumission classique du formulaire
+        makeApiCall(); // Appelle la fonction makeApiCall lors de la soumission du formulaire
+    });
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+</head>
+<body>
+    <button onclick="makeApiCall()">Appeler l'API</button>
+    <div id="result"></div>
+
+    <script>
+        function makeApiCall() {
+            fetch('/make_api_call')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    console.error('Erreur lors de l\'appel API :', error);
+                });
+        }
+    </script>
+</body>
+</html>
